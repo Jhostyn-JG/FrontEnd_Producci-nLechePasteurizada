@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'proceso-pasteurizacion', component: ProcesoPasteurizacionComponent },
   { path: 'proceso-verificacion', component: ProcesoVerificacionComponent },
   { path: 'lotes-productos', component: LotesProductosComponent },
+  { path: 'clientes', component: ClienteComponent },
 ];
 
 @NgModule({
