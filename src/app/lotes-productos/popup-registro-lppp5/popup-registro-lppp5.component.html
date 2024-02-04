@@ -1,0 +1,78 @@
+<form class="form" [formGroup]="form_Lote" (ngSubmit)="save($event)">
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+
+        <!-- Código Lote Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Código Lote</mat-label>
+            <input matInput type="text" formControlName="codLote" readonly>
+        </mat-form-field>
+
+        <!-- Nombre Lote Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Nombre Lote</mat-label>
+            <input matInput placeholder="Nombre Lote" formControlName="nombreLote">
+        </mat-form-field>
+
+        <!-- Tipo Lote Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Tipo Lote</mat-label>
+            <mat-select placeholder="Tipo Lote" formControlName="tipoLote">
+              <mat-option value="Cruda">Leche Cruda</mat-option>
+              <mat-option value="Pasteurizada">Leche Pasteurizada</mat-option>
+              <mat-option value="yogur">Yogur</mat-option>
+              <mat-option value="queso">Queso</mat-option>
+              <mat-option value="crema">Crema</mat-option>
+              <mat-option value="mantequilla">Mantequilla</mat-option>
+              <mat-option value="helado">Helado</mat-option>
+              <mat-option value="otros">Otros</mat-option>
+              <!-- Agrega más opciones según sea necesario -->
+            </mat-select>
+          </mat-form-field>
+          
+
+        <!-- Fecha de Producción Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Fecha de Producción</mat-label>
+            <input matInput [matDatepicker]="picker1" placeholder="Fecha de Producción" formControlName="fechadeProduccion">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Fecha de Vencimiento Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Fecha de Vencimiento</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="Fecha de Vencimiento" formControlName="fechadeVencimiento">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Detalles Lote Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Detalles Lote</mat-label>
+            <mat-select placeholder="Detalles Lote" formControlName="detallesLote">
+              <mat-option value="Regular">Regular</mat-option>
+              <mat-option value="Enriquecido">Enriquecido</mat-option>
+              <mat-option value="Probioticos">Probióticos</mat-option>
+              <mat-option value="Calidad">Calidad</mat-option>
+              <mat-option value="Organico">Orgánico</mat-option>
+              <mat-option value="Vitaminas">Vitaminas</mat-option>
+              <mat-option value="Otras">Otras</mat-option>
+              <!-- Puedes agregar más opciones según sea necesario -->
+            </mat-select>
+          </mat-form-field>
+          
+
+        <!-- Cantidad Paquetes Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Cantidad Paquetes</mat-label>
+            <input matInput type="number" placeholder="Cantidad Paquetes" formControlName="cantidadPaquetes">
+        </mat-form-field>
+
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button type="submit" (click)="submitForm()" color="primary">Enviar</button>
+        <a (click)="closepopup()" mat-raised-button color="warn">Close</a>
+    </div>
+</form>

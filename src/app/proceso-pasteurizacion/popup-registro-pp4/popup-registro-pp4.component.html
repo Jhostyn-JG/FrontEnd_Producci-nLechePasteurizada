@@ -1,0 +1,97 @@
+<form class="form" [formGroup]="form_procesoParteurizacion" (ngSubmit)="save($event)">
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+
+        <!-- Código Proceso Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Código Proceso</mat-label>
+            <input matInput type="text" formControlName="codProcesoPastz" readonly>
+        </mat-form-field>
+
+        <!-- Cantidad Litros Usados Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Cantidad Litros Usados</mat-label>
+            <input matInput placeholder="Cantidad Litros Usados" formControlName="cantidadLitrosUsados">
+        </mat-form-field>
+
+        <!-- Temperatura Column -->
+        <!--<mat-form-field class="example-form-field">
+            <mat-label>Temperatura</mat-label>
+            <input matInput placeholder="Temperatura" formControlName="temperatura">
+        </mat-form-field> -->
+
+        <!-- Tiempo Tratamiento Column -->
+        <!--
+        <mat-form-field class="example-form-field">
+            <mat-label>Tiempo Tratamiento</mat-label>
+            <input matInput placeholder="Tiempo Tratamiento" formControlName="tiempoTratamiento">
+        </mat-form-field>-->
+        <!-- Temperatura Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Temperatura</mat-label>
+            <input matInput type="number" step="0.01" placeholder="Temperatura" formControlName="temperatura">
+        </mat-form-field>
+
+        <!-- Tiempo Tratamiento Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Tiempo Tratamiento</mat-label>
+            <input matInput type="time" placeholder="Tiempo Tratamiento" formControlName="tiempoTratamiento">
+        </mat-form-field>
+
+        <!-- Tipo Procesamiento Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Tipo Procesamiento</mat-label>
+            <mat-select placeholder="Tipo Procesamiento" formControlName="tipoProcesamiento">
+              <mat-option value="pasteurizacion">Pasteurización</mat-option>
+              <mat-option value="ultrapasteurizacion">Ultrapasteurización</mat-option>
+              <mat-option value="homogeneizacion">Homogeneización</mat-option>
+              <mat-option value="fermentacion">Fermentación</mat-option>
+              <mat-option value="esterilizacion">Esterilización</mat-option>
+              <mat-option value="evaporacion">Evaporación</mat-option>
+              <mat-option value="filtracion">Filtración</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+
+        <!-- Detalles Proceso Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Detalles Proceso</mat-label>
+            <mat-select placeholder="Detalles Proceso" formControlName="detallesProceso">
+              <mat-option value="bueno">Bueno</mat-option>
+              <mat-option value="regular">Regular</mat-option>
+              <mat-option value="deficiente">Deficiente</mat-option>
+              <mat-option value="óptimo">Óptimo</mat-option>
+              <mat-option value="mejorable">Mejorable</mat-option>
+              <mat-option value="n/a">No aplica</mat-option>
+              <!-- Agrega más opciones según sea necesario -->
+            </mat-select>
+          </mat-form-field>
+          
+
+        <!-- Recepcion Leche Column 
+        <mat-form-field class="example-form-field">
+            <mat-label>Recepcion Leche</mat-label>
+            <mat-select formControlName="recepcionLeche">
+                <mat-option *ngFor="let recepcion of recepcionesLeche" [value]="recepcion">
+                    {{recepcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Recepcion Leche</mat-label>
+            <input matInput [formControl]="searchControl" placeholder="Buscar...">
+            <mat-select formControlName="recepcionLeche" multiple>
+                <mat-option *ngFor="let recepcion of filteredRecepcionesLecheras | async" [value]="recepcion">
+                    {{recepcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button type="submit" (click)="submitForm()" color="primary">Enviar</button>
+        <a (click)="closepopup()" mat-raised-button color="warn">Close</a>
+    </div>
+</form>

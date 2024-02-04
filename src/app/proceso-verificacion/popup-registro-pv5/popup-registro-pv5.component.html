@@ -1,0 +1,95 @@
+<form class="form" [formGroup]="form_procesoVerificacion" (ngSubmit)="save($event)">
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+
+        <!-- Código Proceso Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Código Proceso</mat-label>
+            <input matInput type="text" formControlName="codProcesoVerificacion" readonly>
+        </mat-form-field>
+
+        <!-- Resultado Verificación Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Resultado Verificación</mat-label>
+            <mat-select formControlName="resultadoVerificacion">
+                <mat-option [value]="true">Correcto</mat-option>
+                <mat-option [value]="false">Incorrecto</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Tiempo Tratamiento Column
+        <mat-form-field class="example-form-field">
+            <mat-label>Tiempo Tratamiento</mat-label>
+            <input matInput placeholder="Tiempo Tratamiento" formControlName="tiempoTratamiento">
+        </mat-form-field> -->
+
+         <!-- Tiempo Tratamiento Column -->
+         <mat-form-field class="example-form-field">
+            <mat-label>Tiempo Tratamiento</mat-label>
+            <input matInput type="time" placeholder="Tiempo Tratamiento" formControlName="tiempoTratamiento">
+        </mat-form-field>
+
+        <!-- Observaciones Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Observaciones</mat-label>
+            <input matInput placeholder="Observaciones" formControlName="observaciones">
+        </mat-form-field>
+
+        <!-- Detalles Proceso Column 
+        <mat-form-field class="example-form-field">
+            <mat-label>Detalles Proceso</mat-label>
+            <input matInput placeholder="Detalles Proceso" formControlName="detallesProceso">
+        </mat-form-field> -->
+        <!-- Detalles Proceso Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Detalles Proceso</mat-label>
+            <mat-select placeholder="Detalles Proceso" formControlName="detallesProceso">
+              <mat-option value="bueno">Bueno</mat-option>
+              <mat-option value="regular">Regular</mat-option>
+              <mat-option value="deficiente">Deficiente</mat-option>
+              <mat-option value="óptimo">Óptimo</mat-option>
+              <mat-option value="mejorable">Mejorable</mat-option>
+              <mat-option value="n/a">No aplica</mat-option>
+              <!-- Agrega más opciones según sea necesario -->
+            </mat-select>
+          </mat-form-field>
+
+        <!-- Proceso Pasteurización Column -->
+        <!-- <mat-form-field>
+            <mat-label>Proceso Pasteurización</mat-label>
+            <mat-select placeholder="Proceso Pasteurización" formControlName="procesoPasteurizacion">
+              <mat-option *ngFor="let proceso of procesosPasteurizacion" [value]="proceso">
+                {{proceso}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>-->
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Proceso Pasteurización</mat-label>
+            <input matInput [formControl]="searchControl" placeholder="Buscar...">
+            <mat-select formControlName="procesoPasteurizacion" >
+                <mat-option *ngFor="let proceso of filteredprocesosPasteurizacion| async" [value]="proceso">
+                    {{proceso}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <!-- Lote Productos Column -->
+        <mat-form-field class="example-form-field">
+            <mat-label>Lote Productos</mat-label>
+            <input matInput [formControl]="searchControl" placeholder="Buscar...">
+            <mat-select formControlName="loteProductos" multiple>
+                <mat-option *ngFor="let lote of filteredLotes | async" [value]="lote">
+                    {{lote}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button type="submit" (click)="submitForm()" color="primary">Enviar</button>
+        <a (click)="closepopup()" mat-raised-button color="warn">Close</a>
+    </div>
+</form>

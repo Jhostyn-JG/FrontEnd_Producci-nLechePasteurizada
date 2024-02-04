@@ -1,0 +1,72 @@
+
+<form class="form" [formGroup]="form_HaciendaLechera" (ngSubmit)="save($event)">
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+
+         <!-- Codigo Lechero Independiente -->
+   <mat-form-field class="example-form-field">
+    <mat-label>Código Hacienda Lechera</mat-label>
+    <input matInput type="text" formControlName="codHacienda" readonly>
+  </mat-form-field>
+        
+        <mat-form-field class="example-form-field">
+            <mat-label>Nombre de la Hacienda</mat-label>
+            <input matInput placeholder="Nombre de la Hacienda" formControlName="nombreHacienda">
+          </mat-form-field>
+        
+          <mat-form-field class="example-form-field">
+            <mat-label> RUC </mat-label>
+            <input matInput placeholder="RUC" formControlName="ruc">
+          </mat-form-field>
+        
+        <mat-form-field class="example-form-field">
+            <mat-label> Dirección </mat-label>
+            <input matInput placeholder="Dirección" formControlName="direccion">
+          </mat-form-field>
+        
+        <mat-form-field class="example-form-field">
+            <mat-label> Teléfono Empresa </mat-label>
+            <input matInput placeholder="Teléfono Empresa" formControlName="telefonoEmpresa">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+        
+          <mat-form-field class="example-form-field">
+            <mat-label> Email </mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        
+        <mat-form-field class="example-form-field">
+            <mat-label> Nombre del Propietario </mat-label>
+            <input matInput placeholder="Responsable" formControlName="responsable">
+          </mat-form-field>
+        
+        
+          <mat-form-field class="example-form-field">
+            <mat-label> Contacto </mat-label>
+            <input matInput placeholder="Contacto" formControlName="telefonoContacto">
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+        
+          <mat-form-field class="example-form-field">
+              <mat-label> Fecha de Adquisición </mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaCompra">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Detalles Suministro</mat-label>
+            <mat-select formControlName="detallesSuministro">
+              <mat-option value="suministroCompleto">Suministro Completo</mat-option>
+              <mat-option value="suministroIncompleto">Suministro Incompleto</mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+    </div>
+    
+    <div mat-dialog-actions>
+        <button mat-raised-button type="submit"  (click)="submitForm()" color="primary">Enviar</button>
+        <a (click)="closepopup()" mat-raised-button color="warn">Close</a>
+    </div>
+    </form>
