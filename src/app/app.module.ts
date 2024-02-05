@@ -49,6 +49,7 @@ import { ProcesoVerificacionComponent } from './proceso-verificacion/proceso-ver
 import { PopupRegistroPv5Component } from './proceso-verificacion/popup-registro-pv5/popup-registro-pv5.component';
 import { LotesProductosComponent } from './lotes-productos/lotes-productos.component';
 import { PopupRegistroLppp5Component } from './lotes-productos/popup-registro-lppp5/popup-registro-lppp5.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { PopupRegistroLppp5Component } from './lotes-productos/popup-registro-lp
     PopupRegistroPv5Component,
     LotesProductosComponent,
     PopupRegistroLppp5Component,
+    PedidosComponent,
     
 
   ],
