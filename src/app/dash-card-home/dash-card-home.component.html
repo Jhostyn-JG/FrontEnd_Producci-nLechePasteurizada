@@ -1,0 +1,22 @@
+<div class="card-container">
+    <mat-card *ngFor="let card of cards; let i = index" [ngStyle]="{'background-color': colors[i % colors.length]}">
+        <mat-card-header>
+            <!--<mat-card-title>{{ card.title }}</mat-card-title> -->
+        </mat-card-header>
+        <div class="card-content">
+            <div class="text-content">
+                <h2 class="card-count">{{ card.count }}</h2>
+                <p class="card-subtitle">{{ card.subtitle }}</p>
+            </div>
+            <div class="icon-content">
+                <mat-icon *ngIf="card.subtitle === 'Haciendas Lecheras'">home</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Lecheros Independientes'">person_pin</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Recepcion de Leche'">emoji_nature</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Proceso de Pasteurizacion'">settings</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Lotes de Productos'">local_shipping</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Proceso de Verificacion'">business</mat-icon>
+                <mat-icon *ngIf="card.subtitle === 'Clientes'">people</mat-icon>
+            </div>
+        </div>
+    </mat-card>
+</div>

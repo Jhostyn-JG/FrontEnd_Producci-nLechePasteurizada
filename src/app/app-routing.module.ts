@@ -9,6 +9,7 @@ import { RecepcionLecheComponent } from './recepcion-leche/recepcion-leche.compo
 import { ProcesoPasteurizacionComponent } from './proceso-pasteurizacion/proceso-pasteurizacion.component';
 import { ProcesoVerificacionComponent } from './proceso-verificacion/proceso-verificacion.component';
 import { LotesProductosComponent } from './lotes-productos/lotes-productos.component';
+import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component';
 
 //import { HomeComponent } from './home/home.component';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'proceso-verificacion', component: ProcesoVerificacionComponent },
   { path: 'lotes-productos', component: LotesProductosComponent },
   { path: 'clientes', component: ClienteComponent },
+  { path: 'dashboard-card', component: DashCardHomeComponent },
 ];
 
 @NgModule({
