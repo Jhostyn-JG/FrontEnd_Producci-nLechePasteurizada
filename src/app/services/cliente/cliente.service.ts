@@ -34,4 +34,9 @@ export class ClienteService {
     return this.http.delete(`${this.baseUrlCliente}/${id}`);
   }
 
+  //Metodo para contar los documentos que hay dentro de Clientes 
+  getClienteCount(): Observable<number> { 
+    return this.http.get<number>(`${this.baseUrlCliente}/count`);
+  }
+
 }

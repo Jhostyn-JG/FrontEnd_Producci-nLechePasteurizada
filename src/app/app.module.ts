@@ -50,6 +50,7 @@ import { PopupRegistroPv5Component } from './proceso-verificacion/popup-registro
 import { LotesProductosComponent } from './lotes-productos/lotes-productos.component';
 import { PopupRegistroLppp5Component } from './lotes-productos/popup-registro-lppp5/popup-registro-lppp5.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     LotesProductosComponent,
     PopupRegistroLppp5Component,
     PedidosComponent,
+    DashCardHomeComponent,
     
 
   ],
