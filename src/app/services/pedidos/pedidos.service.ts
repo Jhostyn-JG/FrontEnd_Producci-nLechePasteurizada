@@ -6,12 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PedidosService {
-  private baseUrlCliente = 'http://localhost:3500/pedido';
+  private baseUrlPedido = 'http://localhost:3500/pedido';
 
   constructor(private http: HttpClient) { }
 
   obtenerListaConCliente(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrlCliente}/lista`);
+    return this.http.get<any[]>(`${this.baseUrlPedido}/lista`);
+  }
+
+  createPedido(dataPedido: any): Observable<any> {
+    return this.http.post(`${this.baseUrlPedido}`, dataPedido);
   }
 
 }

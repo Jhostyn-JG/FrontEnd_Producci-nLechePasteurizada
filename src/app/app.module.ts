@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
+import { MatSliderModule } from '@angular/material/slider';
 
 import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from "@angular/material/list";
@@ -51,6 +52,8 @@ import { LotesProductosComponent } from './lotes-productos/lotes-productos.compo
 import { PopupRegistroLppp5Component } from './lotes-productos/popup-registro-lppp5/popup-registro-lppp5.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component';
+import { PopupCreatePedidoComponent } from './pedidos/popup-create-pedido/popup-create-pedido.component';
+import { PopupAbastecerPedidoComponent } from './pedidos/popup-abastecer-pedido/popup-abastecer-pedido.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,8 @@ import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component
     PopupRegistroLppp5Component,
     PedidosComponent,
     DashCardHomeComponent,
+    PopupCreatePedidoComponent,
+    PopupAbastecerPedidoComponent,
     
 
   ],
@@ -109,7 +114,7 @@ import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component
     MatDialogModule,
     MatSortModule, 
     NgxMatSelectSearchModule,
-
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

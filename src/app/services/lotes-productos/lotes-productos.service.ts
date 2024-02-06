@@ -7,12 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class LotesProductosService {
 
-  private baseUrlLoteProductos = 'http://localhost:8080/loteProductos';
+  private baseUrlLoteProductos = 'http://26.47.197.63:8080/loteProductos';
 
   constructor(private http: HttpClient) { }
 
   getAllLoteProductos(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrlLoteProductos}`);
+  }
+
+  getListCodLoteNombreLote(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlLoteProductos}/listCodLoteNombreLote`);
+  }
+  
+  getCantidadPaquetesDisponiblesByCodLote(codLote:string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlLoteProductos}/getCantidadPaquetesDisponiblesByCodLote/${codLote}`);
   }
 
   saveLoteProductos(dataLoteProductos: any): Observable<any> {

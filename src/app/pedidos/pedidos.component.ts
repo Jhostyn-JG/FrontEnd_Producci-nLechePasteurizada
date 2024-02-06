@@ -6,6 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { PedidosService } from '../services/pedidos/pedidos.service';
+import { PopupCreatePedidoComponent } from './popup-create-pedido/popup-create-pedido.component';
+import { PopupAbastecerPedidoComponent } from './popup-abastecer-pedido/popup-abastecer-pedido.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -42,7 +44,44 @@ export class PedidosComponent implements OnInit{
     });
   }
 
-  addPedido(){}
+  addPedido() {
+    this.openPopupCreate({}, 'Agregar Pedido', PopupCreatePedidoComponent);
+  }
+
+  openPopupCreate(dataPedido: any, title: any, PopupCreatePedidoComponent: any) {
+    const dialogRef = this.dialog.open(PopupCreatePedidoComponent, {
+      width: '40%',
+      data: {
+        title: title,
+        formData: dataPedido
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.fetchData();
+    });
+  }
+
+  addAbastecer(idPedido:string) {
+    this.openPopupAbastacer('Agregar Paquetes', PopupAbastecerPedidoComponent, idPedido);
+  }
+
+  openPopupAbastacer(title: string, PopupAbastecerPedidoComponent: any, idPedido:string) {
+    const dialogRef = this.dialog.open(PopupAbastecerPedidoComponent, {
+      width: '40%',
+      data: {
+        title: title,
+        idPedido: idPedido
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.fetchData();
+    });
+  }
+
   delete(id: string){}
 
   Filterchange(event: KeyboardEvent) {
