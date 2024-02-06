@@ -44,7 +44,7 @@ export class PopupRegistroClienteComponent implements OnInit {
       cedula_cliente: ['', [Validators.required,  Validators.pattern(/^\d{10}$/), this.validacionIDEcuatoriana]],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
-      celular: ['', Validators.required],
+      celular: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       correo: ['', [Validators.required, Validators.email]],
       direccion: ['', Validators.required]
     });

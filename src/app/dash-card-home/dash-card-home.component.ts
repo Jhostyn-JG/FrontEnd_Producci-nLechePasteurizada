@@ -58,6 +58,13 @@ export class DashCardHomeComponent implements OnInit {
         card.count = response.count;
       }
     });
+
+    this.dashCardHomeService.getPedidoCount().subscribe(response => {
+      let card = this.cards.find(card => card.title === 'Pedidos');
+      if (card) {
+        card.count = response.count;
+      }
+    });
    
     //los Java Spring Boot 
     this.dashCardHomeService.getHaciendaLecheraCount().subscribe(response => {

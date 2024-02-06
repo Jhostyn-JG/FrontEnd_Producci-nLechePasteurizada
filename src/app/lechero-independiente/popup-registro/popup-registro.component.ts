@@ -59,7 +59,7 @@ export class PopupRegistroComponent implements OnInit{
       apellidos: ['',Validators.required],
       cedula: ['',[Validators.required,  Validators.pattern(/^\d{10}$/), this.validacionIDEcuatoriana]],
       direccion: ['',Validators.required],
-      contacto: ['',Validators.required],
+      contacto: ['',[Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: ['',[Validators.required,Validators.email]],
       fechaCompra: ['',Validators.required],
       detallesSuministro: [{ value: '', disabled: this.disableSelect.value }]

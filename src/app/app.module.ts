@@ -116,7 +116,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatDialogModule,
     MatSortModule, 
     NgxMatSelectSearchModule,
-    MatSliderModule
+    MatSliderModule,
     NgxChartsModule,
    //NgChartsModule,  // Agrega el módulo ChartsModule aquí
     FormsModule,

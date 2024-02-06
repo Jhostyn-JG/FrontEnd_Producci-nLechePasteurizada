@@ -11,13 +11,13 @@ import { ProcesoVerificacionComponent } from './proceso-verificacion/proceso-ver
 import { LotesProductosComponent } from './lotes-productos/lotes-productos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 //import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-
-  //Rutas del Dashboar 
-  //{path:'',component:HomeComponent},
+  //{ path: '', component: HomeComponent },
   { path: 'lechero-independiente', component: LecheroIndependienteComponent },
   { path: 'hacienda-lechera', component: HaciendaLecheraComponent },
   { path: 'cliente', component: ClienteComponent },
@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: 'lotes-productos', component: LotesProductosComponent },
   { path: 'clientes', component: ClienteComponent },
   { path: 'pedidos', component: PedidosComponent },
-  { path: 'dashboard-card', component: DashCardHomeComponent }
+  { path: 'dashboard-card', component: DashCardHomeComponent },
+  { path: 'dashboard-Principal', component: DashboardComponent },
+  //{ path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

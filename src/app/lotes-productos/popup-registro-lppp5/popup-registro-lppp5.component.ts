@@ -14,7 +14,7 @@ export class PopupRegistroLppp5Component implements OnInit {
 
   form_Lote: FormGroup;
   dataSource: any[] = [];
-  displayedColumns: string[] = ['codLote', 'nombreLote', 'tipoLote', 'fechadeProduccion', 'fechadeVencimiento', 'detallesLote', 'cantidadPaquetes', 'acciones'];
+  displayedColumns: string[] = ['codLote', 'nombreLote', 'tipoLote', 'fechadeProduccion', 'fechadeVencimiento', 'detallesLote', 'cantidadPaquetesTotales','cantidadPaquetesDisponibles', 'acciones'];
   @ViewChild(MatTable) table!: MatTable<any>;
 
   disableSelect = new FormControl(false);
@@ -50,7 +50,8 @@ export class PopupRegistroLppp5Component implements OnInit {
       fechadeProduccion: ['', Validators.required],
       fechadeVencimiento: ['', Validators.required],
       detallesLote: ['', Validators.required],
-      cantidadPaquetes: ['', Validators.required]
+      cantidadPaquetesTotales: ['', Validators.required],
+      cantidadPaquetesDisponibles: ['', Validators.required]
     });
   }
 
@@ -140,7 +141,8 @@ export class PopupRegistroLppp5Component implements OnInit {
         fechadeProduccion: dataLote.fechadeProduccion || '',
         fechadeVencimiento: dataLote.fechadeVencimiento || '',
         detallesLote: dataLote.detallesLote || '',
-        cantidadPaquetes: dataLote.cantidadPaquetes || ''
+        cantidadPaquetesTotales: dataLote.cantidadPaquetesTotales || '',
+        cantidadPaquetesDisponibles: dataLote.cantidadPaquetesDisponibles || ''
       });
   }
 

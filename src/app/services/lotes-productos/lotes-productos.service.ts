@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LotesProductosService {
 
-  private baseUrlLoteProductos = 'http://26.47.197.63:8080/loteProductos';
+  private baseUrlLoteProductos = 'http://localhost:8080/loteProductos';
 
   constructor(private http: HttpClient) { }
 

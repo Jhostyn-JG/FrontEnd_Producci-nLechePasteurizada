@@ -20,7 +20,7 @@ export class LotesProductosComponent implements OnInit {
   
   dataSource = new MatTableDataSource<any>();
   //'codLote',
-  displayedColumns: string[] = [ 'nombreLote', 'tipoLote', 'fechadeProduccion', 'fechadeVencimiento', 'detallesLote', 'cantidadPaquetes', 'acciones'];
+  displayedColumns: string[] = [ 'nombreLote', 'tipoLote', 'fechadeProduccion', 'fechadeVencimiento', 'detallesLote', 'cantidadPaquetesTotales','cantidadPaquetesDisponibles', 'acciones'];
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -46,7 +46,8 @@ export class LotesProductosComponent implements OnInit {
       fechadeProduccion: [''],
       fechadeVencimiento: [''],
       detallesLote: [''],
-      cantidadPaquetes: ['']
+      cantidadPaquetesTotales: [''],
+      cantidadPaquetesDisponibles: ['']
     });
   }
 
@@ -74,7 +75,8 @@ export class LotesProductosComponent implements OnInit {
         fechadeProduccion: dataLote.fechadeProduccion || '',
         fechadeVencimiento: dataLote.fechadeVencimiento || '',
         detallesLote: dataLote.detallesLote || '',
-        cantidadPaquetes: dataLote.cantidadPaquetes || ''
+        cantidadPaquetesTotales: dataLote.cantidadPaquetesTotales || '',
+        cantidadPaquetesDisponibles: dataLote.cantidadPaquetesDisponibles || ''
       });
     this.Openpopup(this.form_lote.value, 'Editar Lote', PopupRegistroLppp5Component);
   }

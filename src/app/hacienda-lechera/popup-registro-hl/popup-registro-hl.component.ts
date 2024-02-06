@@ -49,12 +49,12 @@ export class PopupRegistroHlComponent implements OnInit {
     this.form_HaciendaLechera = this.formBuilder.group({
       codHacienda:[this.generateCodLechero(), Validators.required],
       nombreHacienda: ['', Validators.required],
-      ruc: ['', Validators.required],
+      ruc: ['', [Validators.required, Validators.pattern('^[0-9]{13}$')]],
       direccion: ['', Validators.required],
-      telefonoEmpresa: ['', Validators.required],
+      telefonoEmpresa: ['',[Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: ['',[ Validators.required, Validators.email]],
       responsable: ['', Validators.required],
-      telefonoContacto: ['', Validators.required],
+      telefonoContacto: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       fechaCompra: ['', Validators.required],
       detallesSuministro: [{ value: '', disabled: this.disableSelect.value }]
     });

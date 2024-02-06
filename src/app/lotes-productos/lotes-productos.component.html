@@ -50,9 +50,15 @@
             </ng-container>
 
             <!-- Cantidad Paquetes Column -->
-            <ng-container matColumnDef="cantidadPaquetes">
-                <th mat-header-cell *matHeaderCellDef> Cantidad Paquetes </th>
-                <td mat-cell *matCellDef="let element"> {{element.cantidadPaquetes}} </td>
+            <ng-container matColumnDef="cantidadPaquetesTotales">
+                <th mat-header-cell *matHeaderCellDef> Cantidad Paquetes Total </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidadPaquetesTotales}} </td>
+            </ng-container>
+
+             <!-- Cantidad Paquetes Column -->
+             <ng-container matColumnDef="cantidadPaquetesDisponibles">
+                <th mat-header-cell *matHeaderCellDef> Cantidad Paquetes Disponibles </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidadPaquetesDisponibles}} </td>
             </ng-container>
 
             <!-- Acciones Column -->

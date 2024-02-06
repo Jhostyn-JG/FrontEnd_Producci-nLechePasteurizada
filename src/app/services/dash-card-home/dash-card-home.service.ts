@@ -9,6 +9,7 @@ export class DashCardHomeService {
 
   //******************* URL DE MONGODB ****************** */
   private baseUrlCliente = 'http://localhost:3500/cliente';
+  private baseUrlPedido = 'http://localhost:3500/pedido';
 
    //******************* URL DE MONGODB ****************** */
    private baseUrlHaciendaLechera = 'http://localhost:8080/haciendaLechera';
@@ -29,6 +30,11 @@ export class DashCardHomeService {
   //Metodo para contar los documentos que hay dentro de Clientes 
   getClienteCount(): Observable<{ count: number }> { 
     return this.http.get<{ count: number }>(`${this.baseUrlCliente}/count`);
+}
+
+//Metodo para contar los documentos que hay dentro de Pedidos
+getPedidoCount(): Observable<{ count: number }> { 
+  return this.http.get<{ count: number }>(`${this.baseUrlPedido}/count`);
 }
 
   //***************************************************** */
