@@ -17,20 +17,25 @@ import { HomeComponent } from './home/home.component';
 //import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  //{ path: '', component: HomeComponent },
-  { path: 'lechero-independiente', component: LecheroIndependienteComponent },
-  { path: 'hacienda-lechera', component: HaciendaLecheraComponent },
-  { path: 'cliente', component: ClienteComponent },
-  { path: 'recepcion-leche', component: RecepcionLecheComponent },
-  { path: 'proceso-pasteurizacion', component: ProcesoPasteurizacionComponent },
-  { path: 'proceso-verificacion', component: ProcesoVerificacionComponent },
-  { path: 'lotes-productos', component: LotesProductosComponent },
-  { path: 'clientes', component: ClienteComponent },
-  { path: 'pedidos', component: PedidosComponent },
-  { path: 'dashboard-card', component: DashCardHomeComponent },
-  { path: 'dashboard-Principal', component: DashboardComponent },
-  //{ path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'dashboard-Principal', component: DashboardComponent, children: [
+      { path: '', redirectTo: 'dashboard-card', pathMatch: 'full' }, // Redirección a dashboard-card
+      { path: 'dashboard-card', component: DashCardHomeComponent },
+      { path: 'cliente', component: ClienteComponent },
+      { path: 'hacienda-lechera', component: HaciendaLecheraComponent },
+      { path: 'lechero-independiente', component: LecheroIndependienteComponent },
+      { path: 'recepcion-leche', component: RecepcionLecheComponent },
+      { path: 'proceso-pasteurizacion', component: ProcesoPasteurizacionComponent },
+      { path: 'proceso-verificacion', component: ProcesoVerificacionComponent },
+      { path: 'lotes-productos', component: LotesProductosComponent },
+      { path: 'pedidos', component: PedidosComponent },
+    ]
+  },
+
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
