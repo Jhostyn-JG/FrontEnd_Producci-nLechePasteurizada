@@ -112,12 +112,12 @@ export class PopupRegistroPv5Component implements OnInit {
   private buildForm() {
     this.form_procesoVerificacion = this.formBuilder.group({
       codProcesoVerificacion:[this.generateCodProcesoVerificacion(), Validators.required],
-      resultadoVerificacion: [''],
-      tiempoTratamiento: [''],
-      observaciones: [''],
-      detallesProceso: [''],
-      procesoPasteurizacion: [''],
-      loteProductos: [[]]
+      resultadoVerificacion: ['', Validators.required],
+      tiempoTratamiento: ['', Validators.required],
+      observaciones: ['', Validators.required],
+      detallesProceso: ['', Validators.required],
+      procesoPasteurizacion: ['', Validators.required],
+      loteProductos: [[], Validators.required]
     });
   }
 

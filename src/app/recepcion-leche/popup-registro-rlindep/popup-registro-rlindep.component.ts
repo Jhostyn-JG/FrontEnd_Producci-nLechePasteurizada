@@ -85,12 +85,12 @@ export class PopupRegistroRlindepComponent implements OnInit{
   private buildFormIndepLechera() {
     this.form_RecepcionIndepLechera = this.formBuilder.group({
       codRecepcion:[this.generateCodLechero(), Validators.required],
-      fechaRecepcion: [''],
-      resultadosPruebasCalidad: [''],
-      cantidadLecheRecibida: [''],
-      pagoTotal: [''],
+      fechaRecepcion: ['', Validators.required],
+      resultadosPruebasCalidad: ['', Validators.required],
+      cantidadLecheRecibida: ['', Validators.required],
+      pagoTotal: ['', Validators.required],
       //lecheroIndependiente: ['']
-      lecheroIndependiente: [[]]
+      lecheroIndependiente: [[], Validators.required]
     });
   }
 

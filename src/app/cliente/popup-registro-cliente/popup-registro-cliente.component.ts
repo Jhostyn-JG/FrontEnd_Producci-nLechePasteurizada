@@ -42,11 +42,11 @@ export class PopupRegistroClienteComponent implements OnInit {
   private buildForm() {
     this.form_Cliente = this.formBuilder.group({
       cedula_cliente: ['', Validators.required],
-      nombres: [''],
-      apellidos: [''],
-      celular: [''],
-      correo: [''],
-      direccion: ['']
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      celular: ['', Validators.required],
+      correo: ['', Validators.required],
+      direccion: ['', Validators.required]
     });
   }
 

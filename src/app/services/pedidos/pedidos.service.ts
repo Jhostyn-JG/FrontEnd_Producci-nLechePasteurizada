@@ -14,4 +14,11 @@ export class PedidosService {
     return this.http.get<any[]>(`${this.baseUrlCliente}/lista`);
   }
 
+  
+/*
+  obtenerListaConCliente(): Observable<any[]> {
+    // Reemplaza la URL con la correcta que tu servidor backend espera para obtener todos los pedidos
+    return this.http.get<any[]>(this.baseUrlCliente);
+  }*/
+
 }

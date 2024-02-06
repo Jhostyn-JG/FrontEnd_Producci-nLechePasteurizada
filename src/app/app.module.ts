@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importar BrowserAnimationsModule
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { LecheroIndependienteComponent } from './lechero-independiente/lechero-independiente.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon";
@@ -51,6 +51,8 @@ import { LotesProductosComponent } from './lotes-productos/lotes-productos.compo
 import { PopupRegistroLppp5Component } from './lotes-productos/popup-registro-lppp5/popup-registro-lppp5.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+//import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -109,6 +111,9 @@ import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component
     MatDialogModule,
     MatSortModule, 
     NgxMatSelectSearchModule,
+    NgxChartsModule,
+   //NgChartsModule,  // Agrega el módulo ChartsModule aquí
+    FormsModule,
 
   ],
   providers: [],

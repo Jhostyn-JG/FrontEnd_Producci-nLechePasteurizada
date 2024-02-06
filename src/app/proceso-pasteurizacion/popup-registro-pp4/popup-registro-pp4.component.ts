@@ -82,13 +82,13 @@ export class PopupRegistroPp4Component  implements OnInit{
   private buildForm() {
     this.form_procesoParteurizacion = this.formBuilder.group({
       codProcesoPastz:[this.generateCodLechero(), Validators.required],
-      cantidadLitrosUsados: [''],
-      temperatura: [''],
-      tiempoTratamiento: [''],
-      tipoProcesamiento: [''],
-      detallesProceso: [''],
+      cantidadLitrosUsados: ['', Validators.required],
+      temperatura: ['', Validators.required],
+      tiempoTratamiento: ['', Validators.required],
+      tipoProcesamiento: ['', Validators.required],
+      detallesProceso: ['', Validators.required],
      // recepcionLeche: ['']
-      recepcionLeche: [[]]
+      recepcionLeche: [[], Validators.required]
     });
   }
 

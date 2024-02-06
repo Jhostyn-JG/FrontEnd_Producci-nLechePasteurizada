@@ -45,12 +45,12 @@ export class PopupRegistroLppp5Component implements OnInit {
   private buildForm() {
     this.form_Lote = this.formBuilder.group({
       codLote:[this.generateCodLotesProductos(), Validators.required],
-      nombreLote: [''],
-      tipoLote: [''],
-      fechadeProduccion: [''],
-      fechadeVencimiento: [''],
-      detallesLote: [''],
-      cantidadPaquetes: ['']
+      nombreLote: ['', Validators.required],
+      tipoLote: ['', Validators.required],
+      fechadeProduccion: ['', Validators.required],
+      fechadeVencimiento: ['', Validators.required],
+      detallesLote: ['', Validators.required],
+      cantidadPaquetes: ['', Validators.required]
     });
   }
 

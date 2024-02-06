@@ -38,29 +38,8 @@
 
     <mat-form-field class="example-form-field">
       <mat-label> Pago Total </mat-label>
-      <input matInput placeholder="Pago Total" formControlName="pagoTotal">
+      <input matInput type="number" placeholder="Pago Total" formControlName="pagoTotal">
     </mat-form-field>
-
-    <!--
-            <mat-form-field class="example-form-field">
-        <mat-label>Hacienda Lechera</mat-label>
-        <mat-select formControlName="haciendaLechera">
-          <mat-option *ngFor="let hacienda of haciendasLecheras" [value]="hacienda">
-            {{hacienda}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      -->
-
-    <!--Para elegir multiples 
-      <mat-form-field class="example-form-field">
-        <mat-label>Hacienda Lechera</mat-label>
-        <mat-select formControlName="haciendaLechera" multiple>
-          <mat-option *ngFor="let hacienda of haciendasLecheras" [value]="hacienda">
-            {{hacienda}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>-->
 
       <mat-form-field class="example-form-field">
         <mat-label>Hacienda Lechera</mat-label>
@@ -71,9 +50,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-
-
 
   </div>
 

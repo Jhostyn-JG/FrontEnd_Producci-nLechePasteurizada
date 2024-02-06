@@ -55,13 +55,13 @@ export class PopupRegistroComponent implements OnInit{
   private buildForm() {
     this.form_LecheroIndependiente = this.formBuilder.group({
       codLechero: [this.generateCodLechero(), Validators.required],
-      nombres: [''],
-      apellidos: [''],
-      cedula: [''],
-      direccion: [''],
-      contacto: [''],
-      email: [''],
-      fechaCompra: [''],
+      nombres: ['',Validators.required],
+      apellidos: ['',Validators.required],
+      cedula: ['',Validators.required],
+      direccion: ['',Validators.required],
+      contacto: ['',Validators.required],
+      email: ['',[Validators.required,Validators.email]],
+      fechaCompra: ['',Validators.required],
       detallesSuministro: [{ value: '', disabled: this.disableSelect.value }]
     });
   }
