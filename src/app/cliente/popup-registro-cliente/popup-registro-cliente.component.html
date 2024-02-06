@@ -2,11 +2,21 @@
     <h1 mat-dialog-title>{{inputdata.title}}</h1>
     <div mat-dialog-content>
 
-        <!-- Cedula Cliente Column -->
+        <!-- Cedula Cliente Column 
         <mat-form-field class="example-form-field">
             <mat-label>Cédula Cliente</mat-label>
             <input matInput type="number" formControlName="cedula_cliente" >
-        </mat-form-field>
+        </mat-form-field>-->
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Cédula Cliente</mat-label>
+            <input matInput type="number" formControlName="cedula_cliente" placeholder="Número de Cédula" min="0" step="1" required>
+            <div class="fondo" *ngIf="form_Cliente.get('cedula_cliente')?.errors && form_Cliente.get('cedula_cliente')?.touched">
+              <small *ngIf="form_Cliente.get('cedula_cliente')?.hasError('required')"> El campo Cédula Requerido. * </small>
+              <small *ngIf="form_Cliente.get('cedula_cliente')?.hasError('pattern') "> El valor máximo debe ser 10 caracteres. * </small>
+              <small *ngIf="form_Cliente.get('cedula_cliente')?.hasError('cedulaInvalida') "> La Cédula es Inválida o no es Ecuatoriana</small>
+            </div>
+          </mat-form-field>
 
         <!-- Nombres Column -->
         <mat-form-field class="example-form-field">
