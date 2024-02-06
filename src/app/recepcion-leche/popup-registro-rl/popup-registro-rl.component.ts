@@ -80,12 +80,12 @@ filteredHaciendasLecheras: Observable<string[]>;
   private buildForm() {
     this.form_RecepcionHacLechera = this.formBuilder.group({
       codRecepcion:[this.generateCodLechero(), Validators.required],
-      fechaRecepcion: [''],
-      resultadosPruebasCalidad: [''],
-      cantidadLecheRecibida: [''],
-      pagoTotal: [''],
+      fechaRecepcion: ['', Validators.required],
+      resultadosPruebasCalidad: ['', Validators.required],
+      cantidadLecheRecibida: ['', Validators.required],
+      pagoTotal: ['', Validators.required],
       //haciendaLechera: ['']
-      haciendaLechera: [[]]
+      haciendaLechera: [[], Validators.required]
     });
   }
 

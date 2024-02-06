@@ -11,45 +11,45 @@
         
         <mat-form-field class="example-form-field">
             <mat-label>Nombre de la Hacienda</mat-label>
-            <input matInput placeholder="Nombre de la Hacienda" formControlName="nombreHacienda">
-          </mat-form-field>
+            <input matInput placeholder="Nombre de la Hacienda" formControlName="nombreHacienda" required>
+          </mat-form-field >
         
           <mat-form-field class="example-form-field">
             <mat-label> RUC </mat-label>
-            <input matInput placeholder="RUC" formControlName="ruc">
+            <input matInput type="number" placeholder="RUC" formControlName="ruc" required>
           </mat-form-field>
         
         <mat-form-field class="example-form-field">
             <mat-label> Dirección </mat-label>
-            <input matInput placeholder="Dirección" formControlName="direccion">
+            <input matInput placeholder="Dirección" formControlName="direccion" required>
           </mat-form-field>
         
         <mat-form-field class="example-form-field">
             <mat-label> Teléfono Empresa </mat-label>
-            <input matInput placeholder="Teléfono Empresa" formControlName="telefonoEmpresa">
+            <input matInput type="number" placeholder="Teléfono Empresa" formControlName="telefonoEmpresa" required>
           <mat-icon matSuffix>phone</mat-icon>
         </mat-form-field>
         
           <mat-form-field class="example-form-field">
             <mat-label> Email </mat-label>
-            <input matInput placeholder="Email" formControlName="email">
+            <input matInput placeholder="Email" formControlName="email" required>
           </mat-form-field>
         
         <mat-form-field class="example-form-field">
             <mat-label> Nombre del Propietario </mat-label>
-            <input matInput placeholder="Responsable" formControlName="responsable">
+            <input matInput placeholder="Responsable" formControlName="responsable" required>
           </mat-form-field>
         
         
           <mat-form-field class="example-form-field">
             <mat-label> Contacto </mat-label>
-            <input matInput placeholder="Contacto" formControlName="telefonoContacto">
+            <input matInput type="number" placeholder="Contacto" formControlName="telefonoContacto" required>
             <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
         
           <mat-form-field class="example-form-field">
               <mat-label> Fecha de Adquisición </mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fechaCompra">
+                <input matInput [matDatepicker]="picker" formControlName="fechaCompra" required>
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -57,7 +57,7 @@
         
           <mat-form-field>
             <mat-label>Detalles Suministro</mat-label>
-            <mat-select formControlName="detallesSuministro">
+            <mat-select formControlName="detallesSuministro" required>
               <mat-option value="suministroCompleto">Suministro Completo</mat-option>
               <mat-option value="suministroIncompleto">Suministro Incompleto</mat-option>
             </mat-select>

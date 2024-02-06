@@ -19,11 +19,21 @@
         <input matInput type="text" formControlName="apellidos">
       </mat-form-field>
     
-      <mat-form-field class="example-form-field">
+      <!--<mat-form-field class="example-form-field">
         <mat-label>Cedula</mat-label>
-        <input matInput type="text" formControlName="cedula">
+        <input matInput type="number" formControlName="cedula">
+      </mat-form-field> -->
+      <mat-form-field class="example-form-field">
+        <mat-label>Cédula</mat-label>
+        <input matInput type="number" formControlName="cedula" placeholder="Número de Cédula" min="0" step="1" required>
+        <div class="fondo" *ngIf="form_LecheroIndependiente.get('cedula')?.errors && form_LecheroIndependiente.get('cedula')?.touched">
+          <small *ngIf="form_LecheroIndependiente.get('cedula')?.hasError('required')"> El campo Cédula Requerido. * </small>
+          <small *ngIf="form_LecheroIndependiente.get('cedula')?.hasError('pattern') "> El valor máximo debe ser 10 caracteres. * </small>
+          <small *ngIf="form_LecheroIndependiente.get('cedula')?.hasError('cedulaInvalida') "> La Cédula es Inválida o no es Ecuatoriana</small>
+        </div>
       </mat-form-field>
-    
+
+
       <mat-form-field class="example-form-field">
         <mat-label>Direccion</mat-label>
         <input matInput type="text" formControlName="direccion">
@@ -36,7 +46,7 @@
     
       <mat-form-field class="example-form-field">
         <mat-label>Contacto</mat-label>
-        <input matInput type="text" formControlName="contacto">
+        <input matInput type="number" formControlName="contacto">
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
     

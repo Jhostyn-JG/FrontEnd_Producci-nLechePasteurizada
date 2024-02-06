@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -41,13 +41,54 @@ export class PopupRegistroClienteComponent implements OnInit {
 
   private buildForm() {
     this.form_Cliente = this.formBuilder.group({
-      cedula_cliente: ['', Validators.required],
-      nombres: [''],
-      apellidos: [''],
-      celular: [''],
-      correo: [''],
-      direccion: ['']
+      cedula_cliente: ['', [Validators.required,  Validators.pattern(/^\d{10}$/), this.validacionIDEcuatoriana]],
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      celular: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
+      direccion: ['', Validators.required]
     });
+  }
+
+
+  
+  //validacion de cedula Ecuatoriana 
+  validacionIDEcuatoriana(control: AbstractControl) {
+    
+    if (control.value === null || control.value === undefined) {
+      return { 'cedulaInvalida': true };
+    }
+    
+    const cedula = control.value.toString(); // Convertir a cadena
+
+    const Ncedula = cedula.length;
+
+    if (Ncedula !== 10) {
+      return { 'cedulaInvalida': true };
+    } else {
+      let suma = 0;
+      const verif = parseInt(cedula.charAt(9), 10);
+
+      for (let i = 0; i < 9; i++) {
+        let digito = parseInt(cedula.charAt(i), 10);
+
+        if (i % 2 === 0) {
+          digito *= 2;
+
+          if (digito > 9) {
+            digito -= 9;
+          }
+        }
+
+        suma += digito;
+      }
+      const resultado = 10 - (suma % 10);
+      if (resultado === verif || (resultado === 10 && verif === 0)) {
+        return null;
+      } else {
+        return { 'cedulaInvalida': true };
+      }
+    }
   }
 
   fetchData() {

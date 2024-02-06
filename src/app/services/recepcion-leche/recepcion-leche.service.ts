@@ -45,12 +45,5 @@ export class RecepcionLecheService {
     return this.http.get<string[]>(`${this.baseUrlRecepcionLeche}/haciendaLechera_cod`);
   }
 
-  getlecheroIndependiente_cod_sinRecepcion(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrlRecepcionLeche}/lecheroIndependiente_cod_sinRecepcion`);
-  }
-
-  gethaciendaLechera_cod_sinRecepcion(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrlRecepcionLeche}/haciendaLechera_cod_sinRecepcion`);
-  }
 
 }

@@ -66,15 +66,10 @@ getRecepcionLecheCount(): Observable<number> {
   return this.http.get<number>(`${this.baseUrlRecepcionLeche}/count`);
 }
 
-//Metodo para contar los lotes de productos por año
-getLoteProductosCountByYear(year: number): Observable<number> {
-  return this.http.get<number>(`${this.baseUrlLoteProductos}/countByYear/${year}`);
-}
 
-//Metodo para sumar la cantidad de leche recibida por año y mes
-sumRecepcionLecheByYearMonth(year: number, month: number): Observable<number> {
-  return this.http.get<number>(`${this.baseUrlRecepcionLeche}/sumLecheByYearMonth/${year}/${month}`);
+// Método para sumar la cantidad de leche recibida entre un rango de fechas y agrupar por fecha
+sumRecepcionLecheByDateRangeGroupByFecha(fechaInicio: string, fechaFin: string): Observable<Object[]> {
+  return this.http.get<Object[]>(`${this.baseUrlRecepcionLeche}/sumLecheByDateRangeGroupByFecha/${fechaInicio}/${fechaFin}`);
 }
-
 
 }
