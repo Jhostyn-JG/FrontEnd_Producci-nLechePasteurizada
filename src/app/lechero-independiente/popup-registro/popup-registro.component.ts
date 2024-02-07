@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LecheroIndependienteService } from '../../services/lechero-independiente/lechero-independiente.service';
 import { MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro',
@@ -145,6 +146,13 @@ export class PopupRegistroComponent implements OnInit{
             this.fetchData();
             this.editingcodLechero = null;
             this.form_LecheroIndependiente.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -156,6 +164,13 @@ export class PopupRegistroComponent implements OnInit{
             console.log(response);
             this.fetchData();
             this.form_LecheroIndependiente.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Guardado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

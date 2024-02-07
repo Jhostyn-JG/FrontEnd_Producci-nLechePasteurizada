@@ -8,6 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ProcesoPasteurizacionService } from '../services/proceso-pasteurizacion/proceso-pasteurizacion.service';
 import { PopupRegistroPp4Component } from './popup-registro-pp4/popup-registro-pp4.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proceso-pasteurizacion',
@@ -89,12 +90,39 @@ export class ProcesoPasteurizacionComponent implements OnInit {
     this.Openpopup(this.form_procesoParteurizacion.value, 'Editar Proceso de Pasteurización', PopupRegistroPp4Component);
   }
 
+  /*
   delete(codProcesoPastz: string) {
     this.procesoPasteurizacion.deleteProcesoPasteurizacion(codProcesoPastz).subscribe(response => {
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+
+  delete(codProcesoPastz: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.procesoPasteurizacion.deleteProcesoPasteurizacion(codProcesoPastz).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminar!",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 

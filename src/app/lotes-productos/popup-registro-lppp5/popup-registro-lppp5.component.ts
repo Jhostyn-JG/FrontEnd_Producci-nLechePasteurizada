@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { LotesProductosService } from 'src/app/services/lotes-productos/lotes-productos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro-lppp5',
@@ -90,6 +91,13 @@ export class PopupRegistroLppp5Component implements OnInit {
             this.fetchData();
             this.editingcodLote = null;
             this.form_Lote.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -101,6 +109,13 @@ export class PopupRegistroLppp5Component implements OnInit {
             console.log(response);
             this.fetchData();
             this.form_Lote.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Almacenado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

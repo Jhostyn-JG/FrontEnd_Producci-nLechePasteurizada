@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'dashboard-Principal', component: DashboardComponent, children: [
       { path: '', redirectTo: 'dashboard-card', pathMatch: 'full' }, // Redirección a dashboard-card
       { path: 'dashboard-card', component: DashCardHomeComponent },
-      { path: 'cliente', component: ClienteComponent },
+      { path: 'clientes', component: ClienteComponent },
       { path: 'hacienda-lechera', component: HaciendaLecheraComponent },
       { path: 'lechero-independiente', component: LecheroIndependienteComponent },
       { path: 'recepcion-leche', component: RecepcionLecheComponent },

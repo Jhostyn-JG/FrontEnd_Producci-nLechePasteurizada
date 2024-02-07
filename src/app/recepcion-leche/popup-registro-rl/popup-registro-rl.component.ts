@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription, of } from 'rxjs';
 import { RecepcionLecheService } from 'src/app/services/recepcion-leche/recepcion-leche.service';
 import { startWith, map } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-popup-registro-rl',
   templateUrl: './popup-registro-rl.component.html',
@@ -113,83 +114,6 @@ filteredHaciendasLecheras: Observable<string[]>;
 
   editingcodRecepcion: string | null = null;
 
-  //Este valia hasta 31/01/2024
-/*
-  submitForm() {
-    if (this.form_RecepcionHacLechera.valid) {
-      const value = this.form_RecepcionHacLechera.value;
-       // Construye el objeto haciendaLechera como un array que contiene el string seleccionado
-      // value.haciendaLechera = [value.haciendaLechera];
-       //value.haciendaLechera = [{ codHacienda: value.haciendaLechera }];
-        // Si estamos editando, construye el objeto haciendaLechera como un array que contiene un objeto
-        // Si estamos guardando, construye el objeto haciendaLechera como un array que contiene el string seleccionado
-        value.haciendaLechera = this.editingcodRecepcion ? [{ codHacienda: value.haciendaLechera }] : [value.haciendaLechera];
-       console.log('Value del Subtmit:', value);
-      if (this.editingcodRecepcion) {
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.updateRecepcionLeche(this.editingcodRecepcion, value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.editingcodRecepcion = null;
-            this.form_RecepcionHacLechera.reset();
-            
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      } else {
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.saveRecepcionHaciendaLechera(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.form_RecepcionHacLechera.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      }
-    } else {
-      this.form_RecepcionHacLechera.markAllAsTouched();
-    }
-  }*/
-
-  //version nuvea
- /* submitForm() {
-    if (this.form_RecepcionHacLechera.valid) {
-      const value = this.form_RecepcionHacLechera.value;
-      value.haciendaLechera = this.editingcodRecepcion ? [{ codHacienda: value.haciendaLechera }] : [value.haciendaLechera];
-      console.log('Value del Subtmit:', value);
-      if (this.editingcodRecepcion) {
-        value.codRecepcion = this.editingcodRecepcion; // Asegúrate de que codRecepcion está incluido en el objeto value
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.updateRecepcionLeche(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.editingcodRecepcion = null;
-            this.form_RecepcionHacLechera.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      } else {
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.saveRecepcionHaciendaLechera(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.form_RecepcionHacLechera.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      }
-    } else {
-      this.form_RecepcionHacLechera.markAllAsTouched();
-    }
-  }*/
 
   //otra version nueva multiples
   submitForm() {
@@ -209,6 +133,13 @@ filteredHaciendasLecheras: Observable<string[]>;
             this.fetchData();
             this.editingcodRecepcion = null;
             this.form_RecepcionHacLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -223,6 +154,13 @@ filteredHaciendasLecheras: Observable<string[]>;
             console.log(response);
             this.fetchData();
             this.form_RecepcionHacLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Guardado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

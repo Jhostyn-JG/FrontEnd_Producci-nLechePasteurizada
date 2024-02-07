@@ -5,6 +5,7 @@ import { HaciendaLecheraService } from '../../services/hacienda-lechera/hacienda
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PopupRegistroComponent } from 'src/app/lechero-independiente/popup-registro/popup-registro.component';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -96,6 +97,13 @@ export class PopupRegistroHlComponent implements OnInit {
             this.fetchData();
             this.editingcodHacienda = null;
             this.form_HaciendaLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -107,6 +115,13 @@ export class PopupRegistroHlComponent implements OnInit {
             console.log(response);
             this.fetchData();
             this.form_HaciendaLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Guardado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1900
+            });
           },
           error => {
             console.error(error);

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro-cliente',
@@ -125,6 +126,13 @@ export class PopupRegistroClienteComponent implements OnInit {
             this.fetchData();
             this.editingId = null; // And this line
             this.form_Cliente.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -136,6 +144,13 @@ export class PopupRegistroClienteComponent implements OnInit {
             console.log(response);
             this.fetchData();
             this.form_Cliente.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

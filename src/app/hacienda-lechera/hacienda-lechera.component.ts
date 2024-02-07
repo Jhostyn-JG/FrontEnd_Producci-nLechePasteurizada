@@ -10,6 +10,7 @@ import { PopupRegistroHlComponent } from './popup-registro-hl/popup-registro-hl.
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -75,47 +76,6 @@ export class HaciendaLecheraComponent implements OnInit {
   }
 
 
-  /*
-    save(event: Event) {
-        event.preventDefault();
-      if (this.form_HaciendaLechera.valid) {
-        const value = this.form_HaciendaLechera.value;
-        this.buildForm();
-      } else {
-        this.form_HaciendaLechera.markAllAsTouched();
-      }
-    }*/
-
-
-/*
-
-  submitForm() {
-    if (this.form_HaciendaLechera.valid) {
-      const value = this.form_HaciendaLechera.value;
-      if (this.editingRuc) {
-        this.http.put(`http://localhost:8080/haciendaLechera/update/${this.editingRuc}`, value).subscribe(response => {
-          console.log(response);
-          this.fetchData();
-          this.editingRuc = null;
-          this.form_HaciendaLechera.reset();
-        }, error => {
-          console.error(error);
-        });
-      } else {
-        this.http.post('http://localhost:8080/haciendaLechera/add', value).subscribe(response => {
-          console.log(response);
-          this.fetchData();
-          this.form_HaciendaLechera.reset();
-        }, error => {
-          console.error(error);
-        });
-      }
-    } else {
-      this.form_HaciendaLechera.markAllAsTouched();
-    }
-  }*/
-
-
   editingcodHacienda: string | null = null;
 
   edit(dataHacLechera: any) {
@@ -141,13 +101,38 @@ export class HaciendaLecheraComponent implements OnInit {
 
  
 
-
+/*
   delete(codHacienda: string) {
     this.haciendalechera.deleteHaciendaLechera(codHacienda).subscribe(response => {
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+  delete(codHacienda: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.haciendalechera.deleteHaciendaLechera(codHacienda).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminado!",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 
