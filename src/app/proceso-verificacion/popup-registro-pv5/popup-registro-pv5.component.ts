@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription, map, of, startWith } from 'rxjs';
 import { ProcesoVerificacionService } from 'src/app/services/proceso-verificacion/proceso-verificacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro-pv5',
@@ -167,6 +168,13 @@ export class PopupRegistroPv5Component implements OnInit {
             this.fetchData();
             this.editingcodProcesoVerificacion = null;
             this.form_procesoVerificacion.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -178,6 +186,13 @@ export class PopupRegistroPv5Component implements OnInit {
             console.log(response);
             this.fetchData();
             this.form_procesoVerificacion.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Almacenado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

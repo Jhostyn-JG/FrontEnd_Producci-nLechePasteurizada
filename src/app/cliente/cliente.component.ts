@@ -8,6 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ClienteService } from '../services/cliente/cliente.service';
 import { PopupRegistroClienteComponent } from './popup-registro-cliente/popup-registro-cliente.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cliente',
@@ -62,13 +63,38 @@ export class ClienteComponent implements OnInit {
     this.openPopup({}, 'Añadir Cliente', PopupRegistroClienteComponent);
   }
 
- 
+ /*
   delete(id: string) { // Change this line
     this.clienteService.deleteCliente(id).subscribe(response => { // And this line
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+  delete(id: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.clienteService.deleteCliente(id).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminado!",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 

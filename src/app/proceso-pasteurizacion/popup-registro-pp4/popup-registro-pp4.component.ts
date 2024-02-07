@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription, map, of, startWith } from 'rxjs';
 import { ProcesoPasteurizacionService } from 'src/app/services/proceso-pasteurizacion/proceso-pasteurizacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro-pp4',
@@ -116,47 +117,7 @@ export class PopupRegistroPp4Component  implements OnInit{
 
   editingcodProcesoPastz: string | null = null;
 
-  
-  /*submitForm() {
-    if (this.form_procesoParteurizacion.valid) {
-      const value = this.form_procesoParteurizacion.value;
-       // Construye el objeto haciendaLechera como un array que contiene el string seleccionado
-      // value.haciendaLechera = [value.haciendaLechera];
-       //value.haciendaLechera = [{ codHacienda: value.haciendaLechera }];
-        // Si estamos editando, construye el objeto haciendaLechera como un array que contiene un objeto
-        // Si estamos guardando, construye el objeto haciendaLechera como un array que contiene el string seleccionado
-        value.recepcionLeche = this.editingcodProcesoPastz ? [{ codRecepcion: value.recepcionLeche }] : [value.recepcionLeche];
-      //value.recepcionLeche = [value.recepcionLeche];
-      console.log('Value del Subtmit:', value);
-      if (this.editingcodProcesoPastz) {
-        this.procesoParteurizacionServiceSubscription = this.procesoPasteurizacion.updateProcesoPasteurizacion(this.editingcodProcesoPastz, value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.editingcodProcesoPastz = null;
-            this.form_procesoParteurizacion.reset();
-            
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      } else {
-        this.procesoParteurizacionServiceSubscription = this.procesoPasteurizacion.saveProcesoPasteurizacion(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.form_procesoParteurizacion.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      }
-    } else {
-      this.form_procesoParteurizacion.markAllAsTouched();
-    }
-  }*/
+
 
   submitForm() {
     if (this.form_procesoParteurizacion.valid) {
@@ -175,6 +136,13 @@ export class PopupRegistroPp4Component  implements OnInit{
             this.fetchData();
             this.editingcodProcesoPastz = null;
             this.form_procesoParteurizacion.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Almacenado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -189,6 +157,13 @@ export class PopupRegistroPp4Component  implements OnInit{
             console.log(response);
             this.fetchData();
             this.form_procesoParteurizacion.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Almacenado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

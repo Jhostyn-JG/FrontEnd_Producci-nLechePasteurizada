@@ -11,13 +11,15 @@
         <!-- Nombre Lote Column -->
         <mat-form-field class="example-form-field">
             <mat-label>Nombre Lote</mat-label>
-            <input matInput placeholder="Nombre Lote" formControlName="nombreLote">
-        </mat-form-field>
-
-        <!-- Tipo Lote Column -->
-        <mat-form-field class="example-form-field">
+            <input matInput placeholder="Nombre Lote" formControlName="nombreLote" required>
+            <mat-error *ngIf="form_Lote.get('nombreLote')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="example-form-field">
             <mat-label>Tipo Lote</mat-label>
-            <mat-select placeholder="Tipo Lote" formControlName="tipoLote">
+            <mat-select placeholder="Tipo Lote" formControlName="tipoLote" required>
               <mat-option value="Cruda">Leche Cruda</mat-option>
               <mat-option value="Pasteurizada">Leche Pasteurizada</mat-option>
               <mat-option value="yogur">Yogur</mat-option>
@@ -26,31 +28,35 @@
               <mat-option value="mantequilla">Mantequilla</mat-option>
               <mat-option value="helado">Helado</mat-option>
               <mat-option value="otros">Otros</mat-option>
-              <!-- Agrega más opciones según sea necesario -->
             </mat-select>
+            <mat-error *ngIf="form_Lote.get('tipoLote')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
           </mat-form-field>
           
-
-        <!-- Fecha de Producción Column -->
-        <mat-form-field class="example-form-field">
+          <mat-form-field class="example-form-field">
             <mat-label>Fecha de Producción</mat-label>
-            <input matInput [matDatepicker]="picker1" placeholder="Fecha de Producción" formControlName="fechadeProduccion">
+            <input matInput [matDatepicker]="picker1" placeholder="Fecha de Producción" formControlName="fechadeProduccion" required>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-
-        <!-- Fecha de Vencimiento Column -->
-        <mat-form-field class="example-form-field">
+            <mat-error *ngIf="form_Lote.get('fechadeProduccion')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="example-form-field">
             <mat-label>Fecha de Vencimiento</mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="Fecha de Vencimiento" formControlName="fechadeVencimiento">
+            <input matInput [matDatepicker]="picker2" placeholder="Fecha de Vencimiento" formControlName="fechadeVencimiento" required>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-
-        <!-- Detalles Lote Column -->
-        <mat-form-field class="example-form-field">
+            <mat-error *ngIf="form_Lote.get('fechadeVencimiento')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="example-form-field">
             <mat-label>Detalles Lote</mat-label>
-            <mat-select placeholder="Detalles Lote" formControlName="detallesLote">
+            <mat-select placeholder="Detalles Lote" formControlName="detallesLote" required>
               <mat-option value="Regular">Regular</mat-option>
               <mat-option value="Enriquecido">Enriquecido</mat-option>
               <mat-option value="Probioticos">Probióticos</mat-option>
@@ -58,22 +64,27 @@
               <mat-option value="Organico">Orgánico</mat-option>
               <mat-option value="Vitaminas">Vitaminas</mat-option>
               <mat-option value="Otras">Otras</mat-option>
-              <!-- Puedes agregar más opciones según sea necesario -->
             </mat-select>
+            <mat-error *ngIf="form_Lote.get('detallesLote')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
           </mat-form-field>
           
-
-        <!-- Cantidad Paquetes Column -->
-        <mat-form-field class="example-form-field">
+          <mat-form-field class="example-form-field">
             <mat-label>Cantidad Paquetes Totales</mat-label>
-            <input matInput type="number" placeholder="Cantidad Paquetes Totales" formControlName="cantidadPaquetesTotales">
-        </mat-form-field>
-
-        <!-- Cantidad Paquetes Column -->
-        <mat-form-field class="example-form-field">
+            <input matInput type="number" placeholder="Cantidad Paquetes Totales" formControlName="cantidadPaquetesTotales" required>
+            <mat-error *ngIf="form_Lote.get('cantidadPaquetesTotales')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="example-form-field">
             <mat-label>Cantidad Paquetes Disponibles</mat-label>
-            <input matInput type="number" placeholder="Cantidad Paquetes Disponibles" formControlName="cantidadPaquetesDisponibles">
-        </mat-form-field>
+            <input matInput type="number" placeholder="Cantidad Paquetes Disponibles" formControlName="cantidadPaquetesDisponibles" required>
+            <mat-error *ngIf="form_Lote.get('cantidadPaquetesDisponibles')?.hasError('required')">
+              Este campo es requerido.
+            </mat-error>
+          </mat-form-field>
 
     </div>
 

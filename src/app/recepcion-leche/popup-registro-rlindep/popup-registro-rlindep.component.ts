@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription, map, of, startWith } from 'rxjs';
 import { RecepcionLecheService } from 'src/app/services/recepcion-leche/recepcion-leche.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popup-registro-rlindep',
@@ -118,44 +119,6 @@ export class PopupRegistroRlindepComponent implements OnInit{
 
   editingcodRecepcion: string | null = null;
 
-  //Este es el que estaba primero funcional 
-  /*
-  submitForm() {
-    if (this.form_RecepcionIndepLechera.valid) {
-      const value = this.form_RecepcionIndepLechera.value;
-       // Construye el objeto lecheroIndependiente como un array que contiene el string seleccionado
-       value.lecheroIndependiente = [value.lecheroIndependiente];
-       
-      if (this.editingcodRecepcion) {
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.updateRecepcionLeche(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.editingcodRecepcion = null;
-            this.form_RecepcionIndepLechera.reset();
-            
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      } else {
-        this.recepcionHaclecheServiceSubscription = this.recepcionHacLechera.saveRecepcionLecheroIndependiente(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.form_RecepcionIndepLechera.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      }
-    } else {
-      this.form_RecepcionIndepLechera.markAllAsTouched();
-    }
-  }
-*/
 
   submitForm() {
     if (this.form_RecepcionIndepLechera.valid) {
@@ -174,6 +137,13 @@ export class PopupRegistroRlindepComponent implements OnInit{
             this.fetchData();
             this.editingcodRecepcion = null;
             this.form_RecepcionIndepLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Actualizado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);
@@ -188,6 +158,13 @@ export class PopupRegistroRlindepComponent implements OnInit{
             console.log(response);
             this.fetchData();
             this.form_RecepcionIndepLechera.reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Dato Guardado Correctamente :)",
+              showConfirmButton: false,
+              timer: 1500
+            });
           },
           error => {
             console.error(error);

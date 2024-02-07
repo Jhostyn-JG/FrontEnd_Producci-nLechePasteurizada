@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { LotesProductosService } from '../services/lotes-productos/lotes-productos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupRegistroLppp5Component } from './popup-registro-lppp5/popup-registro-lppp5.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lotes-productos',
@@ -81,12 +82,40 @@ export class LotesProductosComponent implements OnInit {
     this.Openpopup(this.form_lote.value, 'Editar Lote', PopupRegistroLppp5Component);
   }
 
+/*
   delete(codLote: string) {
     this.loteService.deleteLoteProductos(codLote).subscribe(response => {
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+
+  
+  delete(codLote: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.loteService.deleteLoteProductos(codLote).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminado!",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 

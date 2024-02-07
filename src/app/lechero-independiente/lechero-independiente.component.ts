@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 //import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lechero-independiente',
   templateUrl: './lechero-independiente.component.html',
@@ -24,110 +25,6 @@ export class LecheroIndependienteComponent implements OnInit {
   }
 
 
-  /*
-  form_LecheroIndependiente : FormGroup;
-  dataSource: any[] = [];
-  displayedColumns: string[] = ['nombres', 'apellidos', 'cedula', 'direccion','email', 'contacto','fechaCompra', 'detallesSuministro', 'acciones'];
-  @ViewChild(MatTable) table!: MatTable<any>;
-
-
-  disableSelect = new FormControl(false);
-
-    constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    this.form_LecheroIndependiente = this.formBuilder.group({});
-   }
-
-    ngOnInit(): void {
-      this.buildForm();
-      this.fetchData();
-    }
-
-  private buildForm() {
-    this.form_LecheroIndependiente = this.formBuilder.group({
-      nombres: [''],
-      apellidos: [''],
-      cedula: [''],
-      direccion: [''],
-      contacto: [''],
-      email: [''],
-      fechaCompra: [''],
-      informacionContacto: [''],
-      detallesSuministro: [{value: '', disabled: this.disableSelect.value}]
-    });
-  }
-
-    fetchData() {
-    this.http.get('http://localhost:8080/lecheroIndependiente/all').subscribe((response: any) => {
-      this.dataSource = response;
-      this.table.renderRows();
-    }, error => {
-      console.error(error);
-    });
-  }
-
-    save(event: Event) {
-        event.preventDefault();
-      if (this.form_LecheroIndependiente.valid) {
-        const value = this.form_LecheroIndependiente.value;
-        this.buildForm();
-      } else {
-        this.form_LecheroIndependiente.markAllAsTouched();
-      }
-    }
-
-      submitForm() {
-      if (this.form_LecheroIndependiente.valid) {
-        const value = this.form_LecheroIndependiente.value;
-        if (this.editingCedula) {
-          this.http.put(`http://localhost:8080/lecheroIndependiente/update/${this.editingCedula}`, value).subscribe(response => {
-            console.log(response);
-            this.fetchData();
-            this.editingCedula = null;
-            this.form_LecheroIndependiente.reset();
-          }, error => {
-            console.error(error);
-          });
-        } else {
-          this.http.post('http://localhost:8080/lecheroIndependiente/add', value).subscribe(response => {
-            console.log(response);
-            this.fetchData();
-            this.form_LecheroIndependiente.reset();
-          }, error => {
-            console.error(error);
-          });
-        }
-      } else {
-        this.form_LecheroIndependiente.markAllAsTouched();
-      }
-    }
-
-    delete(cedula: string) {
-      this.http.delete(`http://localhost:8080/lecheroIndependiente/delete/${cedula}`).subscribe(response => {
-        console.log(response);
-        // Actualizar los datos de la tabla después de eliminar un registro
-        this.fetchData();
-      }, error => {
-        console.error(error);
-      });
-    }
-
-    editingCedula: string | null = null;
-
-    edit(data: any) {
-      this.editingCedula = data.cedula;
-      this.form_LecheroIndependiente.setValue({
-        nombres: data.nombres || '',
-        apellidos: data.apellidos || '',
-        cedula: data.cedula || '',
-        direccion: data.direccion || '',
-        email: data.email || '',
-        contacto: data.contacto || '',
-        fechaCompra: data.fechaCompra || '',
-        informacionContacto: data.informacionContacto || '',
-        detallesSuministro: data.detallesSuministro || ''
-      });
-    }
-*/
 form_LecheroIndependiente: FormGroup;
   //dataSource: any[] = [];
   dataSource = new MatTableDataSource<any>();
@@ -154,12 +51,6 @@ form_LecheroIndependiente: FormGroup;
     this.fetchData();
   }
 
-  /*ngOnDestroy(): void {
-    if (this.lecheroServiceSubscription) {
-      this.lecheroServiceSubscription.unsubscribe();
-    }
-  }*/
-
 
   private buildForm() {
     this.form_LecheroIndependiente = this.formBuilder.group({
@@ -175,24 +66,7 @@ form_LecheroIndependiente: FormGroup;
     });
   }
 
-  /*
-fetchData() {
-  this.lecheroService.getAllLecheros().subscribe(
-    (response: any) => {
-      console.log('Datos obtenidos del servicio:', response);
-      this.dataSource = response;
-      // Asigna el paginador y el clasificador después de actualizar los datos
-     //this.dataSource.paginator = this.paginator;
-     // this.dataSource.sort = this.sort;
-      if (this.table) {
-        this.table.renderRows();
-      }
-    },
-    (error: any) => {
-      console.error(error);
-    }
-  );
-}*/
+
 fetchData() {
   this.lecheroService.getAllLecheros().subscribe(
     (response: any) => {
@@ -209,6 +83,7 @@ fetchData() {
   );
 }
 
+/*
   delete(codLechero: string) {
     this.lecheroService.deleteLechero(codLechero).subscribe(
       (response) => {
@@ -220,6 +95,36 @@ fetchData() {
       }
     );
   }
+*/
+
+delete(codLechero: string) {
+  Swal.fire({
+    title: "Estas seguro?",
+    text: "No podrás revertir esto.!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, Eliminar !"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.lecheroService.deleteLechero(codLechero).subscribe(response => {
+        console.log(response);
+        this.fetchData();
+        Swal.fire({
+          title: "Eliminar!",
+          text: "Tu dato ha sido eliminado.",
+          icon: "success"
+        });
+      }, (error) => {
+        console.error(error);
+      });
+    }
+  });
+}
+
+
+
 
   addcustomer() {
     this.Openpopup(0, 'Añadir Lechero Independiente', PopupRegistroComponent);
@@ -241,38 +146,7 @@ fetchData() {
       this.fetchData();
     });
   }
-/*  codigo valido comentado para prueba 
-  submitForm() {
-    if (this.form_LecheroIndependiente.valid) {
-      const value = this.form_LecheroIndependiente.value;
-      if (this.editingCedula) {
-        this.lecheroServiceSubscription = this.lecheroService.updateLechero(this.editingCedula, value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.editingCedula = null;
-            this.form_LecheroIndependiente.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      } else {
-        this.lecheroServiceSubscription = this.lecheroService.addLechero(value).subscribe(
-          response => {
-            console.log(response);
-            this.fetchData();
-            this.form_LecheroIndependiente.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      }
-    } else {
-      this.form_LecheroIndependiente.markAllAsTouched();
-    }
-  }*/
+
 
   editingcodLechero: string | null = null;
 

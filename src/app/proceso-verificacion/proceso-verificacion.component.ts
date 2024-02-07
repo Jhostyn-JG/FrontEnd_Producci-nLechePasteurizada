@@ -8,6 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ProcesoVerificacionService } from '../services/proceso-verificacion/proceso-verificacion.service';
 import { PopupRegistroPv5Component } from './popup-registro-pv5/popup-registro-pv5.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proceso-verificacion',
@@ -80,12 +81,40 @@ export class ProcesoVerificacionComponent implements OnInit{
     this.Openpopup(this.form_procesoVerificacion.value, 'Editar Proceso de Verificación', PopupRegistroPv5Component);
   }
 
+  /*
   delete(codProcesoVerificacion: string) {
     this.procesoVerificacion.deleteProcesoVerificacion(codProcesoVerificacion).subscribe(response => {
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+
+  
+  delete(codProcesoVerificacion: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.procesoVerificacion.deleteProcesoVerificacion(codProcesoVerificacion).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminar!",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 

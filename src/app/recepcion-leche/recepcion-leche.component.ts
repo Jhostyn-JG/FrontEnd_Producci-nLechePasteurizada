@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { RecepcionLecheService } from '../services/recepcion-leche/recepcion-leche.service';
 import { PopupRegistroRlComponent } from './popup-registro-rl/popup-registro-rl.component';
 import { PopupRegistroRlindepComponent } from './popup-registro-rlindep/popup-registro-rlindep.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recepcion-leche',
@@ -86,72 +87,6 @@ export class RecepcionLecheComponent implements OnInit{
 
   editingcodRecepcion: string | null = null;
 
-/*
-  edit(recepciondeLechero_dto: any) {
-    this.editingcodRecepcion = recepciondeLechero_dto.codRecepcion;
-    this.form_RecepcionHacLechera.setValue(
-      {
-        codRecepcion: recepciondeLechero_dto.codRecepcion || '',
-        fechaRecepcion: recepciondeLechero_dto.fechaRecepcion || '',
-        resultadosPruebasCalidad: recepciondeLechero_dto.resultadosPruebasCalidad || '',
-        cantidadLecheRecibida: recepciondeLechero_dto.cantidadLecheRecibida || '',
-        pagoTotal: recepciondeLechero_dto.pagoTotal || '',
-        haciendaLechera: [recepciondeLechero_dto.haciendaLechera[0].codHacienda] || ['']
-       //haciendaLechera: recepciondeLechero_dto.haciendaLechera[0].codHacienda || ''
-      // haciendaLechera: [recepciondeLechero_dto.haciendaLechera[0].codHacienda] || ''
-     
-
-      });
-      console.log('CodHaciendaLechera:', recepciondeLechero_dto.haciendaLechera[0].codHacienda);
-    // Open the dialog with the form data
-    this.Openpopup(this.form_RecepcionHacLechera.value, 'Editar Recepción de Hacienda Lechera', PopupRegistroRlComponent);
-  }*/
-
-  /*  valia anteriomente 
-  edit(recepciondeLechero_dto: any) {
-    this.editingcodRecepcion = recepciondeLechero_dto.codRecepcion;
-  
-    // Verifica si el formulario ha sido construido
-    if (!this.form_RecepcionHacLechera) {
-      this.buildForm();
-    }
-  
-    // Verifica si haciendaLechera está definido antes de acceder a sus propiedades
-    if (recepciondeLechero_dto.haciendaLechera && recepciondeLechero_dto.haciendaLechera[0]) {
-      // Establece los valores del formulario usando patchValue
-      this.form_RecepcionHacLechera.patchValue({
-        codRecepcion: recepciondeLechero_dto.codRecepcion || '',
-        fechaRecepcion: recepciondeLechero_dto.fechaRecepcion || '',
-        resultadosPruebasCalidad: recepciondeLechero_dto.resultadosPruebasCalidad || '',
-        cantidadLecheRecibida: recepciondeLechero_dto.cantidadLecheRecibida || '',
-        pagoTotal: recepciondeLechero_dto.pagoTotal || '',
-        haciendaLechera: [recepciondeLechero_dto.haciendaLechera[0].codHacienda] || ['']
-      });
-  
-      console.log('CodHaciendaLechera:', recepciondeLechero_dto.haciendaLechera[0].codHacienda);
-      // Abre el diálogo con los datos del formulario
-      this.Openpopup(this.form_RecepcionHacLechera.value, 'Editar Recepción de Hacienda Lechera', PopupRegistroRlComponent);
-    } else if (recepciondeLechero_dto.lecheroIndependiente && recepciondeLechero_dto.lecheroIndependiente[0]) {
-      // Verifica si el formulario de lecheroIndependiente ha sido construido
-      if (!this.form_RecepcionIndepLechera) {
-        this.buildFormIndepLechera();
-      }
-  
-      // Establece los valores del formulario de lecheroIndependiente usando patchValue
-      this.form_RecepcionIndepLechera.patchValue({
-        codRecepcion: recepciondeLechero_dto.codRecepcion || '',
-        fechaRecepcion: recepciondeLechero_dto.fechaRecepcion || '',
-        resultadosPruebasCalidad: recepciondeLechero_dto.resultadosPruebasCalidad || '',
-        cantidadLecheRecibida: recepciondeLechero_dto.cantidadLecheRecibida || '',
-        pagoTotal: recepciondeLechero_dto.pagoTotal || '',
-        lecheroIndependiente: [recepciondeLechero_dto.lecheroIndependiente[0].codHacienda] || ['']
-      });
-  
-      console.log('CodLecheroIndependiente:', recepciondeLechero_dto.lecheroIndependiente[0].codHacienda);
-      // Abre el diálogo con los datos del formulario de lecheroIndependiente
-      this.Openpopup(this.form_RecepcionIndepLechera.value, 'Editar Recepción de Lechero Independiente', PopupRegistroRlindepComponent);
-    }
-  }*/
 
   edit(recepciondeLechero_dto: any) {
     this.editingcodRecepcion = recepciondeLechero_dto.codRecepcion;
@@ -186,12 +121,39 @@ export class RecepcionLecheComponent implements OnInit{
     }
 }
 
+/*
   delete(codRecepcion: string) {
     this.recepcionHaclechera.deleteRecepcionLeche(codRecepcion).subscribe(response => {
       console.log(response);
       this.fetchData();
     }, (error) => {
       console.error(error);
+    });
+  }*/
+
+  delete(codRecepcion: string) {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podrás revertir esto.!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Eliminar !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.recepcionHaclechera.deleteRecepcionLeche(codRecepcion).subscribe(response => {
+          console.log(response);
+          this.fetchData();
+          Swal.fire({
+            title: "Eliminado !",
+            text: "Tu dato ha sido eliminado.",
+            icon: "success"
+          });
+        }, (error) => {
+          console.error(error);
+        });
+      }
     });
   }
 
