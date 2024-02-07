@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { PedidosService } from '../services/pedidos/pedidos.service';
 import { PopupCreatePedidoComponent } from './popup-create-pedido/popup-create-pedido.component';
 import { PopupAbastecerPedidoComponent } from './popup-abastecer-pedido/popup-abastecer-pedido.component';
+import { PopupVerdetallesComponent } from './popup-verdetalles/popup-verdetalles.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -33,7 +34,6 @@ export class PedidosComponent implements OnInit{
 
   fetchData() {
     this.pedidosService.obtenerListaConCliente().subscribe((response: any) => {
-      console.log(response);
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       if (this.table) {
@@ -63,6 +63,21 @@ export class PedidosComponent implements OnInit{
     });
   }
 
+  entregarPedido(idPedido:string){
+    const pedido = {idPedido: idPedido};
+
+    this.pedidosServiceSubscription = this.pedidosService.estadoEntregado(pedido).subscribe(
+      response => {
+        console.log(response);
+        this.fetchData();
+        //Mostrar aletar de guardado
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
   addAbastecer(idPedido:string) {
     this.openPopupAbastacer('Agregar Paquetes', PopupAbastecerPedidoComponent, idPedido);
   }
@@ -80,6 +95,37 @@ export class PedidosComponent implements OnInit{
       console.log(result);
       this.fetchData();
     });
+  }
+
+
+  
+  verDetalles(idPedido:string) {
+    this.openPopupVerdetalles('Ver detalles de pedido', PopupVerdetallesComponent, idPedido);
+  }
+
+  openPopupVerdetalles(title: string, PopupVerdetallesComponent: any, idPedido:string) {
+    //Cargar datos para componente
+    
+    this.pedidosService.obtenerDetallePedido(idPedido).subscribe((response: any) => {
+      console.log(response.paquetesNombre);
+    const dialogRef = this.dialog.open(PopupVerdetallesComponent, {
+      width: '40%',
+      data: {
+        title: title,
+        cantidad_solicitada: response.cantidad_solicitada,
+        observaciones: response.observaciones,
+        estado: response.estado,
+        lista:  new MatTableDataSource(response.paquetesNombre)
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchData();
+    });
+    }, (error: any) => {
+      console.error(error);
+    });
+
   }
 
   delete(id: string){}

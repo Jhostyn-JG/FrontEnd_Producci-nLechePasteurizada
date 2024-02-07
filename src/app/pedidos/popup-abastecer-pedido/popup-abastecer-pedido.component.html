@@ -3,7 +3,7 @@
     <div mat-dialog-content>
         <mat-form-field class="example-form-field">
             <mat-label>Lote</mat-label>
-            <mat-select formControlName="id_lote" name="id_lote" >
+            <mat-select formControlName="codLote" name="codLote" >
                 <mat-option *ngFor="let lote of dataCombo" [value]="lote[0]" (click) = "cantidadPaquetesLote(lote[0])">
                     {{lote[0]}} - {{lote[1]}}</mat-option>
             </mat-select>

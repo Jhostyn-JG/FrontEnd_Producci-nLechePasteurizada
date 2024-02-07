@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { LotesProductosService } from 'src/app/services/lotes-productos/lotes-productos.service';
@@ -41,8 +41,8 @@ export class PopupAbastecerPedidoComponent implements OnInit{
   lotesCombo(){
     this.lotesServiceSubscription = this.lotesService.getListCodLoteNombreLote().subscribe(
       response => {
-        this.dataCombo = response;
         console.log(response);
+        this.dataCombo = response;
       },
       error => {
         console.error(error);
@@ -54,7 +54,6 @@ export class PopupAbastecerPedidoComponent implements OnInit{
     this.lotesServiceSubscription = this.lotesService.getCantidadPaquetesDisponiblesByCodLote(idLote).subscribe(
       response => {
         this.cantidad = response;
-        console.log(response);
       },
       error => {
         console.error(error);
@@ -64,9 +63,8 @@ export class PopupAbastecerPedidoComponent implements OnInit{
 
   private buildForm() {
     this.form_abastecer = this.formBuilder.group({
-      //id_pedido: [''],
-      id_lote: [''],
-      cantidad_paquetes: ['']
+      codLote: ['', Validators.required],
+      cantidad_paquetes: ['', Validators.required]
     });
   }
 
@@ -78,17 +76,16 @@ export class PopupAbastecerPedidoComponent implements OnInit{
       };
       const finalResult = Object.assign(value, idPedido);
       console.log(finalResult);
-    /*
-        this.pedidoServiceSubscription = this.pedidosService.createPedido(value).subscribe(
-          response => {
-            console.log(response);
-           // this.clienteCombo();
-            this.form_abastecer.reset();
-          },
-          error => {
-            console.error(error);
-          }
-        );*/
+      this.pedidoServiceSubscription = this.pedidosService.abastecerPedido(finalResult).subscribe(
+        response => {
+          console.log(response);
+          // this.clienteCombo();
+          //this.form_abastecer.reset();
+        },
+        error => {
+          console.error(error);
+        }
+      );
     } else {
       this.form_abastecer.markAllAsTouched();
     }

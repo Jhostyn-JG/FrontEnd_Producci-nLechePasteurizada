@@ -55,6 +55,7 @@ import { DashCardHomeComponent } from './dash-card-home/dash-card-home.component
 import { PopupCreatePedidoComponent } from './pedidos/popup-create-pedido/popup-create-pedido.component';
 import { PopupAbastecerPedidoComponent } from './pedidos/popup-abastecer-pedido/popup-abastecer-pedido.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PopupVerdetallesComponent } from './pedidos/popup-verdetalles/popup-verdetalles.component';
 //import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -82,6 +83,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     DashCardHomeComponent,
     PopupCreatePedidoComponent,
     PopupAbastecerPedidoComponent,
+    PopupVerdetallesComponent,
     
 
   ],

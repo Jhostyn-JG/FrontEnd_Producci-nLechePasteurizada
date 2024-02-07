@@ -14,15 +14,22 @@ export class PedidosService {
     return this.http.get<any[]>(`${this.baseUrlPedido}/lista`);
   }
 
+  obtenerDetallePedido(idPedido: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlPedido}/detallePedido/${idPedido}`);
+  }
+
   createPedido(dataPedido: any): Observable<any> {
     return this.http.post(`${this.baseUrlPedido}`, dataPedido);
   }
 
+  abastecerPedido(dataForm: any): Observable<any> {
+    return this.http.post(`${this.baseUrlPedido}/abastecerPedido`, dataForm);
+  }
   
-/*
-  obtenerListaConCliente(): Observable<any[]> {
-    // Reemplaza la URL con la correcta que tu servidor backend espera para obtener todos los pedidos
-    return this.http.get<any[]>(this.baseUrlCliente);
-  }*/
+  estadoEntregado(data:any): Observable<any> {
+    return this.http.post(`${this.baseUrlPedido}/entregar/`, data);
+  }
+
+  
 
 }
